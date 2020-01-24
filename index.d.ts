@@ -9,6 +9,6 @@
  * //=> 'unicorns & rainbows'
  * ```
 */
-declare function theModule(input: string, { postfix }: { postfix?: string }): string;
+declare function runJsc<T extends (...args: U) => unknown, U extends any[]>(input: T | string, args: U): ReturnType<T>
 
-export = theModule;
+export = runJsc
