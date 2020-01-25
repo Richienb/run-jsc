@@ -1,41 +1,58 @@
-# The module [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/the-module/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/the-module)
+# Run Jsc [![Travis CI Build Status](https://img.shields.io/travis/com/Richienb/run-jsc/master.svg?style=for-the-badge)](https://travis-ci.com/Richienb/run-jsc)
 
-My awesome module.
+Run JScript code and retrieve the result.
 
-[![NPM Badge](https://nodei.co/npm/the-module.png)](https://npmjs.com/package/the-module)
+[![NPM Badge](https://nodei.co/npm/run-jsc.png)](https://npmjs.com/package/run-jsc)
 
 ## Install
 
 ```sh
-npm install the-module
+npm install run-jsc
 ```
 
 ## Usage
 
 ```js
-const theModule = require("the-module");
+const runJsc = require("run-jsc");
 
-theModule("unicorns");
-//=> 'unicorns & rainbows'
+(async () => {
+	const result = await runJsc((unicorn, horse) => {
+		return `I love ${unicorn} & ${horse}`;
+	}, ['🦄', '🐴']);
+	
+	console.log(result);
+	//=> 'I love 🦄 & 🐴'
+})()
 ```
 
 ## API
 
-### theModule(input, options?)
+### runJsc(input, args?, options?)
 
 #### input
 
-Type: `string`
+Type: `function | string`
 
-Lorem ipsum.
+The input function.
+
+#### args
+
+Type: `array`\
+Default: `[]`
+
+The arguments to pass to the function.
 
 #### options
 
 Type: `object`
 
-##### postfix
+##### cwd
 
 Type: `string`\
-Default: `rainbows`
+Default: `process.cwd()`
 
-Lorem ipsum.
+Current working directory of the child process.
+
+## Similar
+
+- [run-jxa](https://github.com/sindresorhus/run-jxa) - Run Jxa code.

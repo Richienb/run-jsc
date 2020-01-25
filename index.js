@@ -1,11 +1,10 @@
 "use strict"
 
+const path = require("path")
 const execa = require("execa")
 const fs = require("fs-extra")
 const signalExit = require("signal-exit")
 const uniqueString = require("unique-string")
-const paramNames = require("get-parameter-names")
-const path = require("path")
 const rollup = require("rollup")
 const resolve = require("@rollup/plugin-node-resolve")
 const commonjs = require("@rollup/plugin-commonjs")
@@ -15,6 +14,8 @@ const { default: ow } = require("ow")
 const { default: is } = require("@sindresorhus/is")
 
 module.exports = async (input, args = [], { cwd = process.cwd() } = {}) => {
+	if (process.platform !== "win32") throw new Error("Only Windows is supported.")
+
 	ow(input, ow.any(ow.string, ow.function))
 	ow(args, ow.array)
 	ow(cwd, ow.string)
@@ -47,19 +48,19 @@ WScript.StdOut.Write(fn())
 	const bundle = await rollup.rollup({
 		input: filename,
 		plugins: [resolve(), commonjs(), babel({
-			presets: ["@babel/preset-env"]
-		})]
-	});
+			presets: ["@babel/preset-env"],
+		})],
+	})
 
 	await bundle.write({
 		file: bundled,
-		format: "commonjs"
-	});
+		format: "commonjs",
+	})
 
 	const { stdout } = await execa("cscript", ["//B", "//Nologo", "//U", "//E:jscript", bundled], { cwd })
 
 	await fs.remove(filename)
 	await fs.remove(bundled)
 
-	return normalizeNewline(stdout)
+	return normalizeNewline(stdout).split("\n").map((val, i) => i > 0 ? val.slice(1, -1) : val.slice(0, -1)).join("\n")
 }

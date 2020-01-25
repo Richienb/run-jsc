@@ -1,13 +1,10 @@
 const test = require("ava")
-const theModule = require(".")
+const runJsc = require(".")
 
-test("main", (t) => {
-	t.throws(() => {
-		theModule(123)
-	}, {
-		instanceOf: TypeError,
-		message: "Expected a string, got number",
-	})
-
-	t.is(theModule("unicorns"), "unicorns & rainbows")
+test("main", async (t) => {
+	if (process.platform === "win32") {
+		t.is(await runJsc(() => "a"), "a")
+	} else {
+		t.pass()
+	}
 })

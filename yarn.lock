@@ -2525,11 +2525,6 @@ get-caller-file@^2.0.1:
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
-get-parameter-names@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/get-parameter-names/-/get-parameter-names-0.3.0.tgz#2d2237cd592e6c5b859ab2efdab435f008e5bb97"
-  integrity sha1-LSI3zVkubFuFmrLv2rQ18Ajlu5c=
-
 get-set-props@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/get-set-props/-/get-set-props-0.1.0.tgz#998475c178445686d0b32246da5df8dbcfbe8ea3"
