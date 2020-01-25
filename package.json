@@ -1,6 +1,6 @@
 {
 	"name": "run-jsc",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Run JScript code and retrieve the result.",
 	"repository": "https://github.com/Richienb/run-jsc.git",
 	"author": "Richie Bendall <richiebendall@gmail.com>",
